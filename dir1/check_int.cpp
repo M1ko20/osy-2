@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "checker.h"
+#include "/Users/adammikolas/5.Semestr/OSY/priprava/dva/test_zadani/priprava02/inc/checker.h"
 
-int check_numbers() {
+int check_numbers(int debug) {
     char input_buffer[10000];
     int current_row = 1;
     
@@ -23,9 +23,13 @@ int check_numbers() {
             int parsed_value = atoi(current_word);
             
             if (following_word == NULL) {
-                printf("Moje suma = %d, Suma ze vstupu = %d\n", current_row, accumulated_total, parsed_value);
+                if (debug) {
+                    printf("Moje suma = %d, Suma ze vstupu = %d\n", accumulated_total, parsed_value);
+                }
                 if (accumulated_total != parsed_value) {
-                    fprintf(stderr, "Chyba: Cekal jsem sumu: %d, dostal jsem: %d\n", current_row, parsed_value, accumulated_total);
+                    if (debug) {
+                        fprintf(stderr, "Chyba: Cekal jsem sumu: %d, dostal jsem: %d\n", parsed_value, accumulated_total);
+                    }
                     return 0;
                 } 
                 break;

@@ -1,9 +1,15 @@
 #include <stdio.h>
-#include "checker.h"
+#include "/Users/adammikolas/5.Semestr/OSY/priprava/dva/test_zadani/priprava02/inc/checker.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    if (check_numbers()) {
+    int debug = 0;
+    if (argc == 2)
+    {
+        debug = 1;
+    }
+    
+    if (check_numbers(debug)) {
         printf("Verifikace prosla :)\n");
         return 0;
     } else {

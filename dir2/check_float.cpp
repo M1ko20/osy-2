@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "checker.h"
+#include "../inc/checker.h"
 
-int check_numbers() {
+int check_numbers(int debug) {
     char input_row[10000];
     int row_index = 1;
     
@@ -25,11 +25,15 @@ int check_numbers() {
             float number_value = atof(current_part);
             
             if (next_part == NULL) {
-                printf("Moje suma = %0.2f, Suma ze vstupu = %0.2f\n", row_index, total_amount, number_value);
+                if (debug) {
+                    printf("Moje suma = %.2f, Suma ze vstupu = %.2f\n", total_amount, number_value);
+                }
                 if (fabs(total_amount - number_value) > 0.01) {
-                    fprintf(stderr, "Chyba cekal jsem sumu: %.2f, dostal jsem: %.2f\n", row_index, number_value, total_amount);
+                    if (debug) {
+                        fprintf(stderr, "Chyba cekal jsem sumu: %.2f, dostal jsem: %.2f\n", number_value, total_amount);
+                    }
                     return 0;
-                } 
+                }
                 break;
             } else {
                 total_amount += number_value;
